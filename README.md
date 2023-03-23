@@ -13,5 +13,5 @@ be a safe medium of private data exchange if need be.
 # StudyBlock User Work Flow
 ```mermaid
 graph TB;
-    A[Research Owner] - Advertises Clinical Trial to BlockChain -> D[Clinical Trial Description on chain]
+    A[Research Owner] -- Advertises Clinical Trial to BlockChain --> D[Clinical Trial Description on chain]
 ```
