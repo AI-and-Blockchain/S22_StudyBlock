@@ -13,8 +13,13 @@ be a safe medium of private data exchange if need be.
 # StudyBlock User Work Flow
 ```mermaid
 graph TB;
-    A[Research Owner] -- Advertises Clinical Trial to BlockChain --> D[Clinical Trial Description on chain]
-    A -- Stores data/private information off chain --> E[Clinical Trial Data]
-    B[Researcher] -- Uses NLP Algorithm to search for relevant studies --> F[List of matching clinical trials]
+    A[Research Owner] -- Advertises Clinical Trial <br> to BlockChain --> D[Clinical Trial <br> Description on chain]
+    A -- Stores data/private <br> information off chain --> E[Clinical Trial Data]
+    B[Researcher] -- Uses NLP Algorithm <br> to search for <br> relevant studies --> F[List of matching <br> clinical trials]
+    C[Patient] -- Uses NLP Algorithm <br> to search for <br> relevant studies --> F
+    F -- Researcher/Patient <br> finds a matching study --> D
+    D -- Patient reaches out <br> to research owner --> G[Research Owner and patient <br> line of communication, <br> so patient can potentially be added <br> to the clinical trial]
+    D -- Researcher reaches <br> out to research owner, <br> research owner can chose <br> to then share off-chain <br> data with researcher --> E
+
 
 ```
