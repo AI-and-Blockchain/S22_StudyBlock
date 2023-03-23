@@ -3,6 +3,10 @@ from algosdk.v2client import algod
 from algosdk import account, mnemonic
 from algosdk.transaction import AssetConfigTxn, AssetTransferTxn, AssetFreezeTxn, wait_for_confirmation
 
+# Plan to adapt the Custom Asset Problem from lab 2 to fit the criteria for StudyBlock
+# Below is base skeleton code for transactions of StudyBlock assets
+
+
 # Setup HTTP client w/guest key provided by PureStake
 algod_address = 'https://testnet-algorand.api.purestake.io/ps2'
 algod_token = ""
