@@ -7,4 +7,4 @@ studies which in turn benefits the trials and studies as well. The project will
 use AI to provide matches for researchers and patients. The project will require
 blockchain in order for patients and/or researchers to be able to contact the 
 point of contact of the clinical trials or research studies where there can also 
-be a safe medium of private data exchange if need be. 
+be a safe medium of private data exchange if need be.
