@@ -8,3 +8,10 @@ use AI to provide matches for researchers and patients. The project will require
 blockchain in order for patients and/or researchers to be able to contact the 
 point of contact of the clinical trials or research studies where there can also 
 be a safe medium of private data exchange if need be.
+
+
+# StudyBlock User Work Flow
+```mermaid
+graph TB;
+    A[Research Owner] -- Advertises Clinical Trial to BlockChain --> D[Clinical Trial Description on chain]
+```
