@@ -29,7 +29,8 @@ A[NLP powered search feature] -- List of custom assets that represent clinical t
 B --> B1[Custom Asset #1]
 B --> B2[Custom Asset #2]
 B --> B2[Custom Asset #3]
-B1 & B2 & B3 -- User calls smart contract --> C[ ]:::empty
+B1 & B2 & B3 --> X[ ]:::empty
+X -- User calls smart contract --> C[ ]:::empty
 C --> D[Smart contract #1: <br> Potential patient for study] 
 C --> E[Smart Contract #2: <br> Researcher looking for information]
 classDef empty width:0px,height:0px;
