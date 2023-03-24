@@ -24,8 +24,8 @@ graph TB;
 
 # StudyBlock Architecture
 ```mermaid
-graph TB;
-A[NLP powered search feature] -- List of custom assets that represent clinical trial studies --- B[ ]:::empty
+graph LR;
+A[NLP powered search feature] -- List of custom assets <br> that represent clinical <br> trial studies --- B[ ]:::empty
 B --> B1[Custom Asset #1]
 B --> B2[Custom Asset #2]
 B --> B3[Custom Asset #3]
