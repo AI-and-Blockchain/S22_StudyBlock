@@ -20,6 +20,13 @@ graph TB;
     F -- Researcher/Patient <br> finds a matching study --> D
     D -- Patient reaches out <br> to research owner --> G[Research Owner and patient <br> line of communication, <br> so patient can potentially be added <br> to the clinical trial]
     D -- Researcher reaches <br> out to research owner, <br> research owner can chose <br> to then share off-chain <br> data with researcher --> E
+```
+
+# StudyBlock Architecture
+```mermaid
+graph TB;
+A[NLP powered search feature] -- List of custom assets that represent clinical trial studies --> B[Custom Assets: study #1 <br> study #2 <br> study #3 <br> etc.]
+B -- User calls smart contract --> C[Smart contract #1: <br> Potential patient for study <br><br> Smart Contract #2: <br> Researcher looking for information]
 
 
 ```
