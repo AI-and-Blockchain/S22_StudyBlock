@@ -26,7 +26,9 @@ graph TB;
 ```mermaid
 graph TB;
 A[NLP powered search feature] -- List of custom assets that represent clinical trial studies --> B[Custom Assets: <br>study #1 <br> study #2 <br> study #3 <br> etc.]
-B -- User calls smart contract --> C[Smart contract #1: <br> Potential patient for study] D[Smart Contract #2: <br> Researcher looking for information]
+B -- User calls smart contract --> C[ ]:::empty
+C --> D[Smart contract #1: <br> Potential patient for study] 
+C --> E[Smart Contract #2: <br> Researcher looking for information]
 
 
 ```
