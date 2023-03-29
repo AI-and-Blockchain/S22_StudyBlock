@@ -16,14 +16,16 @@ As a researcher, I want to find clinical trial data related to my current study 
 
 # StudyBlock User Work Flow
 ```mermaid
-graph TB;
-    A[Research Owner] -- Advertises Clinical Trial <br> to BlockChain --> D[Clinical Trial <br> Description on chain]
-    A -- Stores data/private <br> information off chain --> E[Clinical Trial Data]
-    B[Researcher] -- Uses NLP Algorithm <br> to search for <br> relevant studies --> F[List of matching <br> clinical trials]
-    C[Patient] -- Uses NLP Algorithm <br> to search for <br> relevant studies --> F
-    F -- Researcher/Patient <br> finds a matching study --> D
-    D -- Patient reaches out <br> to research owner --> G[Research Owner and patient <br> line of communication, <br> so patient can potentially be added <br> to the clinical trial]
-    D -- Researcher reaches <br> out to research owner, <br> research owner can chose <br> to then share off-chain <br> data with researcher --> E
+sequenceDiagram;
+    Participant A as Research Owner
+    Participant B as Researcher
+    Participant C as Patient
+    Note over A: Advertises Clinical Trial <br> to BlockChain
+    Note over A: Stores trial description on <br> chain, stores data/private <br> information off chain
+    Note over B, C: Uses NLP Algorithm <br> to search for <br> relevant studies
+    Note over B,C: Researcher/Patient <br> finds a matching study
+    B -> A: Researcher reaches <br> out to research owner, <br> research owner can chose <br> to then share off-chain
+    C -> A: Patient reaches out <br> to research owner
 ```
 
 # StudyBlock Architecture
