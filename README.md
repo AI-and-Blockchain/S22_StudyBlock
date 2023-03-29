@@ -29,9 +29,9 @@ graph TB;
 # StudyBlock Architecture
 ```mermaid
 graph LR;
-A[NLP powered search feature] -- List of custom assets <br> that represent clinical <br> trial studies --- B[ ]:::empty
-B --> B1[Clinical Trial #1 <br> Clinical Trial #2 <br> Clinical Trial #3 <br> etc.]
-B1 -- User calls smart contract --- C[ ]:::empty
+A[NLP powered search feature] -- List of custom assets <br> that represent clinical <br> trial studies --->
+B[Clinical Trial #1 <br> Clinical Trial #2 <br> Clinical Trial #3 <br> etc.]
+B -- User calls smart contract --- C[ ]:::empty
 C --> D[Smart contract #1: <br> Potential patient for study] 
 C --> E[Smart Contract #2: <br> Researcher looking for information]
 classDef empty width:0px,height:0px;
