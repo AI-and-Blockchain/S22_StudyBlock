@@ -1,4 +1,5 @@
 import json
+from pyteal import *
 from algosdk.v2client import algod
 from algosdk import account, mnemonic
 from algosdk.transaction import AssetConfigTxn, AssetTransferTxn, AssetFreezeTxn, wait_for_confirmation
@@ -53,52 +54,69 @@ def print_asset_holding(algodclient, account, assetid):
 print("Account 1 address: {}".format(account_public_key))
 
 # CREATE ASSET
-# Get network params for transactions before every transaction.
-params = algod_client.suggested_params()
-# comment these two lines if you want to use suggested params
-params.fee = 1
-params.flat_fee = False
+# Define the smart contract for the patient recruitment system
+# This smart contract is written in TEAL, Algorand's smart contract programming language
 
-# Account 1 creates an asset called latinum and
-# sets Account 2 as the manager, reserve, freeze, and clawback address.
-# Asset Creation transaction
+# Global Variables
+register = Bytes("register")
+patient = Bytes("patient")
+trial_id = Bytes("trial ID")
+patient_id = Bytes("patient ID")
+patient_name = Bytes("patient name")
+patient_age = Bytes("patient age")
+patient_gender = Bytes("patient gender")
+data_sharing = Bytes("data-sharing")
+data = Bytes("data")
 
-txn = AssetConfigTxn(
-    sender=account_public_key,
-    sp=params,
-    total=100,
-    default_frozen=False,
-    unit_name="StudyBlock",
-    asset_name="StudyBlock",
-    manager=account_public_key,
-    reserve=account_public_key,
-    freeze=account_public_key,
-    clawback=account_public_key,
-    url="https://path/to/my/asset/details", 
-    decimals=0)
+# Register a new patient
+# This function is called when the "register" parameter is passed to the smart contract
+# It registers the patient information in a hash table and assigns the patient an ID
+register_patient = And(
+    Txn.application_args[0] == register,
+    App.globalPut(
+        Bytes("patients"),
+        Txn.application_args[2],
+        {
+            patient_id: Txn.application_args[3],
+            trial_id: Txn.application_args[1],
+            patient_name: Txn.application_args[4],
+            patient_age: Txn.application_args[5],
+            patient_gender: Txn.application_args[6],
+        },
+    ),
+)
 
-# # Sign with secret key of creator
-stxn = txn.sign(account_secret_key)
+# Data sharing
+# This function is called when the "data-sharing" parameter is passed to the smart contract
+# It allows patients to share their data with the clinical trial program
+share_data = And(
+    Txn.application_args[0] == data_sharing,
+    App.globalPut(
+        Txn.application_args[2],
+        Txn.application_args[1],
+        Txn.application_args[3],
+    ),
+)
 
-# Send the transaction to the network and retrieve the txid.
-txid = algod_client.send_transaction(txn=stxn)
-print(txid)
+# Token rewards
+# This function is called when a patient completes a task or milestone in the clinical trial
+# It rewards the patient with tokens, which can be used as an incentive to participate in the trial
+token_rewards = And(
+    Txn.application_args[0] == data,
+    App.globalPut(
+        Txn.application_args[1],
+        Txn.application_args[4],
+        App.globalGet(Txn.application_args[1], Txn.application_args[4]) + Txn.application_args[2],
+    ),
+)
 
-# Retrieve the asset ID of the newly created asset by first
-# ensuring that the creation transaction was confirmed,
-# then grabbing the asset id from the transaction.
+# Define the main function
+def approval_program():
+    return And(
+        Or(register_patient, share_data, token_rewards),
+        Txn.application_id() == Int(1234567890), # Replace with your application ID
+    )
 
-# Wait for the transaction to be confirmed
-wait_for_confirmation(algod_client, txid)
-
-try:
-    # Pull account info for the creator
-    # account_info = algod_client.account_info(accounts[1]['pk'])
-    # get asset_id from tx
-    # Get the new asset's information from the creator account
-    ptx = algod_client.pending_transaction_info(txid)
-    asset_id = ptx["asset-index"]
-    print_created_asset(algod_client, account_public_key, asset_id)
-    print_asset_holding(algod_client, account_public_key, asset_id)
-except Exception as e:
-    print(e)
+# Define the clear state function
+def clear_state_program():
+    return Return(Int(1))
