@@ -30,12 +30,14 @@ sequenceDiagram;
 
 # StudyBlock Architecture
 ```mermaid
-graph LR;
-A[NLP powered search feature] -- List of custom assets <br> that represent clinical <br> trial studies --->
-B[Clinical Trial #1 <br> Clinical Trial #2 <br> Clinical Trial #3 <br> etc.]
-B -- User calls smart contract --- C[ ]:::empty
-C --> D[Smart contract #1: <br> Potential patient for study] 
-C --> E[Smart Contract #2: <br> Researcher looking for information]
-classDef empty width:0px,height:0px;
-
+sequenceDiagram;
+    Participant A as NLP powered search engine
+    Participant B as BlockChain layer
+    Participant C as User
+    C -> B: As a research owner, can use smart contract to <br> add clinical trial as variable
+    C -> B: Triggers search feature
+    A -> B: Uses oracle to communicate, and returns list of <br> relevant variables/ clinical trials
+    B -> C: Exposes matching clinical trials to user
+    C -> B: As a patient or researcher, can trigger smart <br> contract to communicate with research owner
+    
 ```
