@@ -2,6 +2,7 @@ def researchOutput():
     print("Would you like to store, edit or delete a trial?")
     line = input()
     
+    
 
 
 def patientOutput():
@@ -11,6 +12,9 @@ def patientOutput():
     # model returns list of relevant trials
     trials = ["List", "of", "trials"]
     print("Here are a list of current trials in that area:\n", trials)
+    print("Which trial would you like to access? (number)")
+    line = int(input())
+    print("Accessing", trials[line-1])
 
 
 print("Researcher [R] or Patient [P]?")
