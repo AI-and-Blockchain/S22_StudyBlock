@@ -1,8 +1,11 @@
 import json
+import Crypto
 from pyteal import *
 from algosdk.v2client import algod
 from algosdk import account, mnemonic
 from algosdk.transaction import AssetConfigTxn, AssetTransferTxn, AssetFreezeTxn, wait_for_confirmation
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
 
 # Plan to adapt the Custom Asset Problem from lab 2 to fit the criteria for StudyBlock
 # Below is base skeleton code for transactions of StudyBlock assets
@@ -20,6 +23,9 @@ account_public_key = "temp"
 
 # Initialize an algod client
 algod_client = algod.AlgodClient(algod_token=algod_token, algod_address=algod_address, headers=headers)
+
+# Define the RSA key pair
+key = RSA.generate(2048)
 
 #   Utility function used to print created asset for account and assetid
 def print_created_asset(algodclient, account, assetid):    
@@ -110,12 +116,40 @@ token_rewards = And(
     ),
 )
 
+
 # Define the main function
 def approval_program():
-    return And(
+    # Create a cipher object for RSA encryption and decryption
+    cipher = PKCS1_OAEP.new(key)
+    
+    # Encrypt the patient data
+    encrypted_data = cipher.encrypt(json.dumps({
+        'trial_id': Txn.application_args[1],
+        'patient_id': Txn.application_args[3],
+        'patient_name': Txn.application_args[4],
+        'patient_age': Txn.application_args[5],
+        'patient_gender': Txn.application_args[6],
+    }).encode())
+    
+    # Create the transaction
+    txn = And(
+        App.globalPut(
+            Bytes("patients"),
+            Txn.application_args[2],
+            {
+                'data': encrypted_data,
+            },
+        ),
         Or(register_patient, share_data, token_rewards),
         Txn.application_id() == Int(1234567890), # Replace with your application ID
     )
+    
+    # Decrypt the patient data (for testing purposes only)
+    decrypted_data = cipher.decrypt(encrypted_data).decode()
+    print(decrypted_data)
+    
+    return txn
+
 
 # Define the clear state function
 def clear_state_program():
