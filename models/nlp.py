@@ -1,55 +1,73 @@
-from gensim.models.word2vec import Word2Vec as w2v
-
+import os
 import pandas as pd
-import re
-
-from sklearn.decomposition import PCA
-
-from matplotlib import pyplot as plt
-import plotly.graph_objects as go
-
 import numpy as np
+import pickle
+import spacy
+import scispacy
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+from gensim.models.fasttext import FastText
+from rank_bm25 import BM25Okapi
+import nmslib
+import time
 
-import warnings
+docs = pd.read_csv('trialdata.csv')
+title = docs['Study'].tolist()
+text = docs['Detailed Description'].tolist()
 
-warnings.filterwarnings('ignore')
+nlp = spacy.load("en_core_sci_sm")
+tok_text = []
 
-# Example sentences scraped from breast cancer clinical trial research
+for doc in nlp.pipe(text, disable=["tagger", "parser", "ner", "lemmatizer"]):
+    tok = [t.text for t in doc if (t.is_ascii and not t.is_punct and not t.is_space)]
+    tok_text.append(tok)
 
-sentences = ['This clinical trial studies how well paclitaxel, trastuzumab, and pertuzumab work in eliminating further'
-             ' chemotherapy after surgery in patients with HER2-positive stage II-IIIa breast cancer who have no cancer'
-             ' remaining at surgery'.split(' '),
-             'This phase III trial compares the effect of usual treatment with trastuzumab emtansine (T-DM1) alone vs. '
-             'T-DM1 in combination with tucatinib. T-DM1 is a monoclonal antibody, called trastuzumab, linked to a '
-             'chemotherapy drug, called DM'.split(' '),
-             'This phase III trial compares the effect of radiation therapy combined with hormonal therapy versus '
-             'hormonal therapy alone in treating patients with low risk, early stage breast cancer with Oncotype'
-             ' Dx Recurrence =< 18'.split(' '),
-             'This randomized phase III trial studies if not giving regional radiotherapy is just as good as using '
-             'regional radiotherapy in keeping breast cancer from coming back in patients with estrogen receptor '
-             '(ER) positive, HER2 negative node positive low risk breast cancer who have undergone breast '
-             'conserving surgery or mastectomy'.split(' ')]
+ft_model = FastText(
+    sg=1,  # use skip-gram: usually gives better results
+    vector_size=100,  # embedding dimension (default)
+    window=10,  # window size: 10 tokens before and 10 tokens after to get wider context
+    min_count=1,  # only consider tokens with at least n occurrences in the corpus
+    negative=15,  # negative subsampling: bigger than default to sample negative examples more
+    min_n=2,  # min character n-gram
+    max_n=5  # max character n-gram
+)
 
-w2v = w2v(sentences, min_count=1)
+ft_model.build_vocab(tok_text)
 
-print(w2v)
+ft_model.train(
+    tok_text,
+    epochs=6,
+    total_examples=ft_model.corpus_count,
+    total_words=ft_model.corpus_total_words)
 
-words = list(w2v.wv.key_to_index)
-index = w2v.wv.get_vecattr('cancer', 'count')
-print(words)
-print(index)
+ft_model.save('_fasttext.model')
 
-# update from here below
-X = w2v[w2v.wv.key_to_index]
-pca = PCA(n_components=2)
+with plt.xkcd():
+    pd.DataFrame(ft_model.wv.most_similar("chemotherapy", topn=10, restrict_vocab=5000),
+                 columns=['Word', 'Score']).plot.barh(x='Word', figsize=(6, 6), color=(0.3, 0.7, 0.7))
 
-result = pca.fit_transform(X)
+bm25 = BM25Okapi(tok_text)
+weighted_doc_vects = []
 
-# create a scatter plot of the projection
-plt.scatter(result[:, 0], result[:, 1])
-words = list(w2v.wv.key_to_index)
+for i, doc in enumerate(tok_text):
+    doc_vector = []
+    for word in doc:
+        vector = ft_model.wv[word]
+        # note for newer versions of fasttext you may need to replace ft_model[word] with ft_model.wv[word]
+        weight = (bm25.idf[word] * ((bm25.k1 + 1.0) * bm25.doc_freqs[i][word])) / (
+                bm25.k1 * (1.0 - bm25.b + bm25.b * (bm25.doc_len[i] / bm25.avgdl)) + bm25.doc_freqs[i][word])
+        weighted_vector = vector * weight
+        doc_vector.append(weighted_vector)
+    doc_vector_mean = np.mean(doc_vector, axis=0)
+    weighted_doc_vects.append(doc_vector_mean)
 
-for i, word in enumerate(words):
-    plt.annotate(word, xy=(result[i, 0], result[i, 1]))
+pickle.dump(weighted_doc_vects, open("weighted_doc_vects.p", "wb"))
 
-plt.show()
+query = "one year long studies"
+tokenized_query = query.lower().split(" ")
+
+results = bm25.get_top_n(tokenized_query, text, n=3)
+for i in results:
+    print(title[text.index(i)])
+    print(i)
+    print('\n')
