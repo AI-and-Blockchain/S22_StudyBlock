@@ -1,3 +1,5 @@
+from gensim.models.fasttext import FastText
+
 def researchOutput():
     print("Input your identifier: ")
     line = input()
@@ -35,6 +37,13 @@ def patientOutput():
     print("Which trial would you like to access? (number)")
     line = int(input())
     print("Accessing", trials[line-1])
+
+def load_model_function(path):
+     model = FastText.load_model("model_filename.bin")
+     print("Model has been loaded")  
+     return model
+
+
 
 passwords = ["CMU", "JHU", "RPI"]
 print("Researcher [R] or Patient [P]?")
