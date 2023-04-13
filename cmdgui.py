@@ -35,6 +35,13 @@ def patientOutput():
     print("Which trial would you like to access? (number)")
     line = int(input())
     print("Accessing", trials[line-1])
+    print("Would you like to contact the researcher?")
+    line = input()
+    if(line == 'y'):
+        # run the oracle to send messages
+        #oracle.run()
+        print()
+
 
 passwords = ["CMU", "JHU", "RPI"]
 print("Researcher [R] or Patient [P]?")

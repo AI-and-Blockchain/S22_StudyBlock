@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Page</title>
+</head>
+<body>
+	<h1>Search Database</h1>
+	<form>
+		<label for="search-input">Enter Search Term:</label>
+		<input type="text" id="search-input" name="search-input">
+		<input type="submit" value="Search">
+	</form>
+
+	<div id="search-results">
+		<!-- Search results will be displayed here -->
+	</div>
+
+	<script>
+		// JavaScript code to perform the search
+		const form = document.querySelector('form');
+		const input = document.querySelector('#search-input');
+		const results = document.querySelector('#search-results');
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+			const searchTerm = input.value;
+
+			// Fetch data from the database using an API endpoint
+			const response = await fetch(`/search?query=${searchTerm}`);
+			const data = await response.json();
+
+			// Display search results
+			results.innerHTML = '';
+			data.forEach(result => {
+				const resultElement = document.createElement('div');
+				resultElement.innerHTML = `<h2>${result.title}</h2><p>${result.description}</p>`;
+				results.appendChild(resultElement);
+			});
+		});
+	</script>
+</body>
+</html>
