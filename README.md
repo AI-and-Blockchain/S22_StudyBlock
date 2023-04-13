@@ -46,13 +46,25 @@ sequenceDiagram;
 
 ### Getting Started ###
 
-Clone this github repo
+Clone this github repo:
 
-Download our testing data
+``` 
+git clone https://github.com/AI-and-Blockchain/S23_StudyBlock.git
+```
+
+Download our testing data:
+
+```
+https://docs.google.com/spreadsheets/d/1nBnqNMZMN4zYPI4_bdbiWCXIne6HrEFAvWLzhznfYqU/edit?usp=share_link
+```
+
+This data comes from clinicaltrials.gov
 
 ### Dependencies ###
 
-Install requirements from requirements.txt
+Install requirements from requirements.txt.
+
+Our project is run on algorand and our NLP model uses spacy and scispacy. 
 
 ## Usage ##
 
