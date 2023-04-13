@@ -1,5 +1,3 @@
-from gensim.models.fasttext import FastText
-
 def researchOutput():
     print("Input your identifier: ")
     line = input()
@@ -37,12 +35,12 @@ def patientOutput():
     print("Which trial would you like to access? (number)")
     line = int(input())
     print("Accessing", trials[line-1])
-
-def load_model_function(path):
-     model = FastText.load_model("model_filename.bin")
-     print("Model has been loaded")  
-     return model
-
+    print("Would you like to contact the researcher?")
+    line = input()
+    if(line == 'y'):
+        # run the oracle to send messages
+        #oracle.run()
+        print()
 
 
 passwords = ["CMU", "JHU", "RPI"]
