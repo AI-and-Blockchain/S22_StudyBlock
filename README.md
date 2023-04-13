@@ -68,7 +68,7 @@ After cloning this repo, install requirements from requirements.txt by running t
 pip install -r requirements.txt
 ```
 
-Following this install the NLP model from this link:
+Following this, install the NLP model from this link:
 ```
 https://allenai.github.io/scispacy/
 ```
@@ -87,13 +87,13 @@ We use the package algosdk to develop in algorand using python, to find out more
 https://py-algorand-sdk.readthedocs.io/en/latest/
 ```
 
-To find out more about the sciSpaCy package, visit the following link:
-
-```
-https://allenai.github.io/scispacy/
-```
 
 ## Usage ##
+
+This project is *currently* run on a command line interface. To do this start by running the file '???.py'. Then follow the command line prompts to run the project.
+
+#### Example Inputs and Expected Results ####
+ 
 
 
 ## Project Structure ##
