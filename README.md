@@ -58,13 +58,40 @@ Download our testing data:
 https://docs.google.com/spreadsheets/d/1nBnqNMZMN4zYPI4_bdbiWCXIne6HrEFAvWLzhznfYqU/edit?usp=share_link
 ```
 
-This data comes from clinicaltrials.gov
+This data comes from https://clinicaltrials.gov
 
 ### Dependencies ###
 
-Install requirements from requirements.txt.
+After cloning this repo, install requirements from requirements.txt by running the following command:
 
-Our project is run on algorand and our NLP model uses spacy and scispacy. 
+``` 
+pip install -r requirements.txt
+```
+
+Following this install the NLP model from this link:
+```
+https://allenai.github.io/scispacy/
+```
+
+Download the url for "en_core_sci_sm", then run the following command:
+
+```
+pip install <Model URL>
+```
+
+Our project is run on algorand and our NLP model uses SpaCy and sciSpaCy. 
+
+We use the package algosdk to develop in algorand using python, to find out more about this visit the following link:
+
+```
+https://py-algorand-sdk.readthedocs.io/en/latest/
+```
+
+To find out more about the sciSpaCy package, visit the following link:
+
+```
+https://allenai.github.io/scispacy/
+```
 
 ## Usage ##
 
