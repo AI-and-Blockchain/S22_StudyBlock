@@ -14,7 +14,7 @@ As a breast cancer patient, I want to be able to further look into the effects a
 
 As a researcher, I want to find clinical trial data related to my current study to help support my current research.
 
-#### StudyBlock User Work Flow ####
+### StudyBlock User Work Flow ###
 ```mermaid
 sequenceDiagram;
     Participant A as Research Owner
@@ -28,16 +28,33 @@ sequenceDiagram;
     C -> A: Patient reaches out <br> to research owner
 ```
 
-#### StudyBlock Architecture ####
+### StudyBlock Architecture ###
 ```mermaid
 sequenceDiagram;
-    Participant A as NLP powered search engine
     Participant B as BlockChain layer
     Participant C as User
+    Participant A as NLP powered search engine
     C -> A: Triggers search feature
     A -> C: Returns list of relevant studies
     C -> B: User uses atomic contract <br> to privately message research owner
-    C -> B: Research owner uses atomic <br> contract to privately messager <br> participant or researcher
-   
-    
+    C -> B: Research owner uses atomic <br> contract to privately messager <br> participant or researcher 
 ```
+
+# Instructions
+
+## Installation ##
+
+### Getting Started ###
+
+Clone this github repo
+
+Download our testing data
+
+### Dependencies ###
+
+Install requirements from requirements.txt
+
+## Usage ##
+
+
+## Project Structure ##
