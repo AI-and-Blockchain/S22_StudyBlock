@@ -22,7 +22,6 @@ def researchOutput():
     elif line == 'e' or 'E':
         print()
 
-
 def patientOutput():
     print("Please enter any search terms: ")
     line = input()
@@ -41,7 +40,7 @@ def patientOutput():
     print("Accessing", trials[line - 1])
     print("Would you like to contact the researcher?")
     line = input()
-    if (line == 'y'):
+    if (line == 'y' or line == 'Y'):
         # run the oracle to send messages
         print("Enter your address: ")
         patientAddress = input()
@@ -58,7 +57,8 @@ def patientOutput():
 
 
 my_model = Model()
-my_model.search('Chemotherapy trials for woman older than 30')
+# my_model.search('Chemotherapy trials for woman older than 30')
+my_model.train_model()
 passwords = ["CMU", "JHU", "RPI"]
 print("Researcher [R] or Patient [P]?")
 line = input()
