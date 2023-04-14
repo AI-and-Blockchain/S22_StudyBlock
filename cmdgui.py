@@ -52,9 +52,6 @@ def patientOutput():
         message = input()
         send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
 
-        # oracle.run()
-        print()
-
 
 my_model = Model()
 # my_model.search('Chemotherapy trials for woman older than 30')
