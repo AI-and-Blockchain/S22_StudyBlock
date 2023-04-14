@@ -52,7 +52,7 @@ Clone this github repo:
 git clone https://github.com/AI-and-Blockchain/S23_StudyBlock.git
 ```
 
-Download our testing data:
+Download our test data as a csv:
 
 ```
 https://docs.google.com/spreadsheets/d/1nBnqNMZMN4zYPI4_bdbiWCXIne6HrEFAvWLzhznfYqU/edit?usp=share_link
