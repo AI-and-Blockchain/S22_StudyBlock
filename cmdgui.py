@@ -41,6 +41,8 @@ def patientOutput():
     line = input()
     if(line == 'y'):
         # run the oracle to send messages
+        print("Enter your address: ")
+        patientAddress=input()
         #oracle.run()
         print()
 
