@@ -8,7 +8,7 @@ def researchOutput():
         print("Invalid identifier, ending session")
         exit()
     print("Welcome", line)
-    print("Would you like to store, edit or delete a trial?")
+    print("Would you like to add, edit or delete a trial?")
     line = input()
     if line == 's' or line == 'S':
         print("Enter the new trial to add: ")
@@ -60,7 +60,7 @@ my_model = Model()
 # my_model.search('Chemotherapy trials for woman older than 30')
 my_model.train_model()
 passwords = ["CMU", "JHU", "RPI"]
-print("Researcher [R] or Patient [P]?")
+print("Researcher (WIP) [R] or Patient [P]?")
 line = input()
 if line == "r" or line == "R":
     researchOutput()
