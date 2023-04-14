@@ -100,20 +100,17 @@ This project is *currently* run on a command line interface. To do this start by
 ## Project Structure ##
 ```
 - root
-
-    - Messaging                                 (Code for Blockchain messaging and encryption)
-        ClinicalTrial.py
-        ClinicalTrialMessaging.py
-        
-    - Models                                    (Code to create our model and enable searches)
-        nlp.py
-        test-model.py
-        trialdata.csv                           (Trial data)
-        
-    atomicContract.py                           (Atomic Contract code)
-    oracle.py                                   (Oracle code)
-    cmdgui.py                                   (Command Line interface)
-    page.html                                   (Web interface)
+        - Messaging                                 (Code for Blockchain messaging and encryption)
+                ClinicalTrial.py
+                ClinicalTrialMessaging.py  
+        - Models                                    (Code to create our model and enable searches)
+                nlp.py
+                test-model.py
+                trialdata.csv                       (Trial data)    
+        atomicContract.py                           (Atomic Contract code)
+        oracle.py                                   (Oracle code)
+        cmdgui.py                                   (Command Line interface)
+        page.html                                   (Web interface)
 
 ```
 
