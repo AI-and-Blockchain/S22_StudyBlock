@@ -95,7 +95,7 @@ This project is *currently* run on a command line interface. To do this start by
 
 #### Example Inputs and Expected Results ####
 ```
-Researcher [R] or Patient [P]?
+Researcher (WIP) [R] or Patient [P]?
 P
 Please enter any search terms: 
 atypia
