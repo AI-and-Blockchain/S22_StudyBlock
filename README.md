@@ -94,6 +94,7 @@ https://py-algorand-sdk.readthedocs.io/en/latest/
 This project is *currently* run on a command line interface. To do this start by running the file 'cmdgui.py'. Then follow the command line prompts to run the project.
 
 #### Example Inputs and Expected Results ####
+```
 Researcher [R] or Patient [P]?
 p
 Please enter any search terms:
@@ -118,7 +119,7 @@ I would like to participate
 Transaction sent with ID OXA5SLMFLV3IUQVHVYUFS6UOVV2CRS4SQ2ARXFXMAYQZ7NRSEZLA
 Waiting for confirmation
 Transaction confirmed in round 29127673
-
+````
 
 ## Project Structure ##
 ```
