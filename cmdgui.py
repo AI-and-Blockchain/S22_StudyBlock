@@ -1,3 +1,5 @@
+from models.nlp import Model
+
 def researchOutput():
     print("Input your identifier: ")
     line = input()
@@ -42,7 +44,10 @@ def patientOutput():
         #oracle.run()
         print()
 
-
+my_model = Model('trialdata.csv')
+my_model.train_model()
+my_model.add_trial('test trial', 'hello')
+my_model.search('Chemotherapy trials for woman older than 30')
 passwords = ["CMU", "JHU", "RPI"]
 print("Researcher [R] or Patient [P]?")
 line = input()
