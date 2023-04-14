@@ -1,5 +1,5 @@
 from models.nlp import Model
-
+from messaging.ClinicalTrialMessaging import send_message
 
 def researchOutput():
     print("Input your identifier: ")
@@ -49,8 +49,10 @@ def patientOutput():
         patientKey = input()
         print("Enter receiver address: ")
         receiverAddress = input()
+        print("Enter message: ")
+        message = input()
+        send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
 
-        
         # oracle.run()
         print()
 

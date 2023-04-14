@@ -1,20 +1,12 @@
-import os
 import pandas as pd
-import numpy as np
 import pickle
 import spacy
 import scispacy
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-from gensim.models.fasttext import FastText
 from rank_bm25 import BM25Okapi
-import nmslib
-import time
-
 
 class Model:
     def __init__(self):
-        self.csv_name = 'trialdata.csv'
+        self.csv_name = 'models/trialdata.csv'
 
         docs = pd.read_csv(self.csv_name)
         self.title = docs['Study'].tolist()
@@ -31,7 +23,7 @@ class Model:
             tok_text.append(tok)
 
         bm25 = BM25Okapi(tok_text)
-        with open('bm25result', 'wb') as bm25result_file:
+        with open('models/bm25result', 'wb') as bm25result_file:
             pickle.dump(bm25, bm25result_file)
 
     def add_trial(self, title, description):
@@ -49,13 +41,13 @@ class Model:
             tok_text.append(tok)
 
         bm25 = BM25Okapi(tok_text)
-        with open('bm25result', 'wb') as bm25result_file:
+        with open('models/bm25result', 'wb') as bm25result_file:
             pickle.dump(bm25, bm25result_file)
 
     def search(self, query):
         tokenized_query = query.lower().split(" ")
 
-        with open('bm25result', 'rb') as bm25result_file:
+        with open('models/bm25result', 'rb') as bm25result_file:
             bm25result = pickle.load(bm25result_file)
             results = bm25result.get_top_n(tokenized_query, self.text, n=3)
             for i in results:
