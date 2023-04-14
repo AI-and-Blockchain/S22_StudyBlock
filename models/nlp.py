@@ -4,6 +4,7 @@ import spacy
 import scispacy
 from rank_bm25 import BM25Okapi
 
+
 class Model:
     def __init__(self):
         self.csv_name = 'models/trialdata.csv'
@@ -11,6 +12,7 @@ class Model:
         docs = pd.read_csv(self.csv_name)
         self.title = docs['Study'].tolist()
         self.text = docs['Detailed Description'].tolist()
+        self.owner = docs['Owner'].tolist()
         self.text = [i.lower() for i in self.text]
         self.docs = pd.DataFrame({"Study": self.title, "Detailed Description": self.text})
 
@@ -26,11 +28,12 @@ class Model:
         with open('models/bm25result', 'wb') as bm25result_file:
             pickle.dump(bm25, bm25result_file)
 
-    def add_trial(self, title, description):
+    def add_trial(self, title, description, address):
         self.title.append(title)
         self.text.append(description.lower())
+        self.owner.append(address)
 
-        self.docs = pd.DataFrame({"Study": self.title, "Detailed Description": self.text})
+        self.docs = pd.DataFrame({"Study": self.title, "Detailed Description": self.text, "Owner": self.owner})
 
         self.docs.to_csv(self.csv_name)
 
@@ -52,6 +55,7 @@ class Model:
             bm25result = pickle.load(bm25result_file)
             results = bm25result.get_top_n(tokenized_query, self.text, n=3)
             for i in results:
-                search_results.append(self.title[self.text.index(i)])
+                sr = '%s, Owner Address: %s' % (self.title[self.text.index(i)], self.owner[self.text.index(i)])
+                search_results.append(sr)
 
             return search_results
