@@ -96,7 +96,7 @@ This project is *currently* run on a command line interface. To do this start by
 #### Example Inputs and Expected Results ####
 Researcher [R] or Patient [P]?
 p
-Please enter any search terms: 
+Please enter any search terms:
 atypia
 Here are a list of current trials in that area:
 1 Vitamin D and Breast Cancer Biomarkers in Female Patients
