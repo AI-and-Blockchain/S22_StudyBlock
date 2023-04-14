@@ -45,12 +45,13 @@ class Model:
             pickle.dump(bm25, bm25result_file)
 
     def search(self, query):
+        search_results = []
         tokenized_query = query.lower().split(" ")
 
         with open('models/bm25result', 'rb') as bm25result_file:
             bm25result = pickle.load(bm25result_file)
             results = bm25result.get_top_n(tokenized_query, self.text, n=3)
             for i in results:
-                print(self.title[self.text.index(i)])
-                print(i)
-                print('\n')
+                search_results.append(self.title[self.text.index(i)])
+
+            return search_results
