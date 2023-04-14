@@ -45,13 +45,17 @@ def patientOutput():
         # run the oracle to send messages
         print("Enter your address: ")
         patientAddress = input()
+        print("Enter private key: ")
+        patientKey = input()
+        print("Enter receiver address: ")
+        receiverAddress = input()
+
+        
         # oracle.run()
         print()
 
 
 my_model = Model()
-my_model.train_model()
-my_model.add_trial('test trial', 'hello')
 my_model.search('Chemotherapy trials for woman older than 30')
 passwords = ["CMU", "JHU", "RPI"]
 print("Researcher [R] or Patient [P]?")
