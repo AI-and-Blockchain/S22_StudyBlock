@@ -129,7 +129,6 @@ Transaction confirmed in round 29128132
                 ClinicalTrialMessaging.py  
         - Models                                    (Code to create our model and enable searches)
                 nlp.py
-                test-model.py
                 trialdata.csv                       (Trial data)    
         atomicContract.py                           (Atomic Contract code)
         oracle.py                                   (Oracle code)
