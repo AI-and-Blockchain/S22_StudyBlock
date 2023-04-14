@@ -13,10 +13,10 @@ import time
 
 
 class Model:
-    def __init__(self, csv):
-        self.csv_name = csv
+    def __init__(self):
+        self.csv_name = 'trialdata.csv'
 
-        docs = pd.read_csv(csv)
+        docs = pd.read_csv(self.csv_name)
         self.title = docs['Study'].tolist()
         self.text = docs['Detailed Description'].tolist()
         self.text = [i.lower() for i in self.text]

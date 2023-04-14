@@ -1,5 +1,6 @@
 from models.nlp import Model
 
+
 def researchOutput():
     print("Input your identifier: ")
     line = input()
@@ -21,6 +22,7 @@ def researchOutput():
     elif line == 'e' or 'E':
         print()
 
+
 def patientOutput():
     print("Please enter any search terms: ")
     line = input()
@@ -28,25 +30,26 @@ def patientOutput():
     # model returns list of relevant trials
     trials = ["List", "of", "trials"]
     print("Here are a list of current trials in that area:")
-    
+
     index = 1
     for i in trials:
         print(index, i)
         index += 1
-    
+
     print("Which trial would you like to access? (number)")
     line = int(input())
-    print("Accessing", trials[line-1])
+    print("Accessing", trials[line - 1])
     print("Would you like to contact the researcher?")
     line = input()
-    if(line == 'y'):
+    if (line == 'y'):
         # run the oracle to send messages
         print("Enter your address: ")
-        patientAddress=input()
-        #oracle.run()
+        patientAddress = input()
+        # oracle.run()
         print()
 
-my_model = Model('trialdata.csv')
+
+my_model = Model()
 my_model.train_model()
 my_model.add_trial('test trial', 'hello')
 my_model.search('Chemotherapy trials for woman older than 30')
