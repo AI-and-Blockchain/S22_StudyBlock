@@ -96,16 +96,16 @@ This project is *currently* run on a command line interface. To do this start by
 #### Example Inputs and Expected Results ####
 ```
 Researcher [R] or Patient [P]?
-p
-Please enter any search terms:
+P
+Please enter any search terms: 
 atypia
 Here are a list of current trials in that area:
-1 Vitamin D and Breast Cancer Biomarkers in Female Patients
-2 test trial
-3 4D Image-Guided Partial Breast Radiation in Stage 0 and l Breast Cancer
+1 Vitamin D and Breast Cancer Biomarkers in Female Patients, Owner Address: BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
+2 A Clinical Study to Determine the Pharmacokinetics of Oraxol in Breast Cancer Patients, Owner Address: BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
+3 A Study of Eribulin Mesylate With Trastuzumab for Advanced or Recurrent Human Epidermal Growth Factor Receptor 2-Positive (HER2+) Breast Cancer, Owner Address: BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
 Which trial would you like to access? (number)
-3
-Accessing 4D Image-Guided Partial Breast Radiation in Stage 0 and l Breast Cancer
+1
+Accessing Vitamin D and Breast Cancer Biomarkers in Female Patients, Owner Address: BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
 Would you like to contact the researcher?
 y
 Enter your address: 
@@ -116,9 +116,9 @@ Enter receiver address:
 BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
 Enter message: 
 I would like to participate
-Transaction sent with ID OXA5SLMFLV3IUQVHVYUFS6UOVV2CRS4SQ2ARXFXMAYQZ7NRSEZLA
+Transaction sent with ID 2VIWPTAAHSXB47NWR3E3MHDEVLOHN7GQ7KQNL4IC34D66S4JUDFQ
 Waiting for confirmation
-Transaction confirmed in round 29127673
+Transaction confirmed in round 29128132
 ````
 
 ## Project Structure ##
