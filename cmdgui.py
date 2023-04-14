@@ -28,7 +28,7 @@ def patientOutput():
     line = input()
     # load model and pass input into model
     # model returns list of relevant trials
-    trials = ["List", "of", "trials"]
+    trials = my_model.search(line)
     print("Here are a list of current trials in that area:")
 
     index = 1
