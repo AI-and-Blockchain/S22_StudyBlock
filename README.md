@@ -94,7 +94,30 @@ https://py-algorand-sdk.readthedocs.io/en/latest/
 This project is *currently* run on a command line interface. To do this start by running the file 'cmdgui.py'. Then follow the command line prompts to run the project.
 
 #### Example Inputs and Expected Results ####
- 
+Researcher [R] or Patient [P]?
+p
+Please enter any search terms: 
+atypia
+Here are a list of current trials in that area:
+1 Vitamin D and Breast Cancer Biomarkers in Female Patients
+2 test trial
+3 4D Image-Guided Partial Breast Radiation in Stage 0 and l Breast Cancer
+Which trial would you like to access? (number)
+3
+Accessing 4D Image-Guided Partial Breast Radiation in Stage 0 and l Breast Cancer
+Would you like to contact the researcher?
+y
+Enter your address: 
+2W4PBQN3ZTAG54D3MM2CJDLN4WTDTQJVV2W4AHO7SHYOSDIDWV6HM2B3KM
+Enter private key: 
+L+ds9q28iYcsgeu/5BOX8ZSHd4KUup2q4/SutqLeCDPVuPDBu8zAbvB7YzQkjW3lpjnBNa6twB3fkfDpDQO1fA==
+Enter receiver address: 
+BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
+Enter message: 
+I would like to participate
+Transaction sent with ID OXA5SLMFLV3IUQVHVYUFS6UOVV2CRS4SQ2ARXFXMAYQZ7NRSEZLA
+Waiting for confirmation
+Transaction confirmed in round 29127673
 
 
 ## Project Structure ##
