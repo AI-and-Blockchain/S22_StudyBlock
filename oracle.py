@@ -1,5 +1,6 @@
 import requests
 import json
+import base64
 
 # set up query parameters
 address = "BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI"
@@ -25,6 +26,11 @@ for tx in transactions:
     note = "empty"
     if("note" in tx):
         note = tx['note']
+        base64_bytes = note.encode('ascii')
+        message_bytes = base64.b64decode(base64_bytes)
+        message = message_bytes.decode('ascii')
     # do something with tx_id and amount
-    print(tx_id, amount, note)
+    
+
+    print(tx_id, amount, message)
 
