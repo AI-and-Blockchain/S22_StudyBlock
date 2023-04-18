@@ -77,7 +77,7 @@ Download the url for "en_core_sci_sm", then run the following commands:
 
 ```
 pip install scispacy
-pip install <Model URL>
+pip install en_core_sci_sm.tar.gz
 ```
 
 Our project is run on algorand and our NLP model uses SpaCy and sciSpaCy. 
@@ -111,7 +111,7 @@ y
 Enter your address: 
 2W4PBQN3ZTAG54D3MM2CJDLN4WTDTQJVV2W4AHO7SHYOSDIDWV6HM2B3KM
 Enter private key: 
-L+ds9q28iYcsgeu/5BOX8ZSHd4KUup2q4/SutqLeCDPVuPDBu8zAbvB7YzQkjW3lpjnBNa6twB3fkfDpDQO1fA==
+
 Enter receiver address: 
 BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI
 Enter message: 
