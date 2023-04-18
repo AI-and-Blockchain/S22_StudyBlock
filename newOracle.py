@@ -88,3 +88,52 @@ last_block = client.status()["lastRound"]
 while True:
     try:
         result = client.pending_transactions
+        for txn in result["transactions"]:
+            if txn["lastRound"] <= last_block:
+                continue
+
+            last_block = txn["lastRound"]
+
+            txn_id = txn["tx"]
+            txn_info = client.pending_transaction_info(txn_id)
+
+            if txn_info["type"] == "pay" and txn_info["from"] == researcher_address:
+                try:
+                    data = messaging.get_message(txn_id, oracle_address)
+                    data = data.decode("utf-8")
+                    txn_data = Bytes(data.encode("utf-8"))
+
+                    txn_group = [
+                        transaction.PaymentTxn(
+                            contract_receiver,
+                            contract_private_key,
+                            contract_amount,
+                            txn_info["receiver"],
+                            last_block,
+                            last_block + 1000,
+                            txn_info["fee"],
+                            flat_fee=True
+                        ),
+                        transaction.ApplicationCallTxn(
+                            oracle_address,
+                            client.suggested_params(),
+                            int(contract_address),
+                            [txn_data],
+                            [],
+                            last_block,
+                            last_block + 1000,
+                            txn_info["fee"],
+                            flat_fee=True
+                        )
+                    ]
+
+                    signed_group = [
+                        txn_group[0].sign(contract_private_key),
+                        txn_group[1].sign(oracle_private_key)
+                    ]
+
+                    client.send_transactions(signed_group)
+                except Exception as e:
+                    print(e)
+    except Exception as e:
+        print(e)
