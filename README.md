@@ -73,11 +73,11 @@ Following this, install the NLP model from this link:
 https://allenai.github.io/scispacy/
 ```
 
-Download the url for "en_core_sci_sm", then run the following commands:
+Download the url for "en_core_sci_sm" (DO NOT UNZIP FILE), then run the following commands:
 
 ```
 pip install scispacy
-pip install en_core_sci_sm.tar.gz
+pip install <path to en_core_sci_sm.tar.gz>
 ```
 
 Our project is run on algorand and our NLP model uses SpaCy and sciSpaCy. 
