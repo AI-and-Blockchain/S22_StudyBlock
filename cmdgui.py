@@ -11,16 +11,15 @@ def researchOutput():
     print("Would you like to add, edit or delete a trial?")
     line = input()
     if line == 's' or line == 'S':
-        print("Enter the new trial to add: ")
-        line = input()
-        # add given trial to the database or asset - depending on how we are storing them
+        print("Enter the new trial title to add: ")
+        title = input()
         print("Enter the trial description: ")
-        line = input()
-        # same as above
+        desc = input()
+        print("Enter your address as a contact point: ")
+        address = input()
+        my_model.add_trial(title, description=desc, address=address)
         print("Trial stored")
         exit()
-    elif line == 'e' or 'E':
-        print()
 
 def patientOutput():
     print("Please enter any search terms: ")
@@ -51,7 +50,6 @@ def patientOutput():
         print("Enter message: ")
         message = input()
         send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
-
 
 my_model = Model()
 # my_model.search('Chemotherapy trials for woman older than 30')
