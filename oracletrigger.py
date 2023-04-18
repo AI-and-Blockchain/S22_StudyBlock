@@ -8,7 +8,7 @@ oracle_address = "ORACLE_ADDRESS"
 contract_address = "CONTRACT_ADDRESS"
 
 # Algorand Indexer credentials
-indexer_key = "YOUR_ALGOD_INDEXER_API_KEY"
+indexer_key = "a" * 64
 indexer_address = "https://testnet-algorand.api.purestake.io/idx2"
 indexer_client = indexer.IndexerClient(indexer_key, indexer_address)
 
