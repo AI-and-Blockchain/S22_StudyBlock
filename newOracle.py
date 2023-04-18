@@ -5,7 +5,7 @@ from algosdk import encoding
 from algosdk import transaction
 
 # Algod credentials
-purestake_key = "YOUR_ALGOD_API_KEY"
+purestake_key = "1xxSTImRIS7YrSc6GQeTc1XILcoh8faP5F3o1rVA"
 endpoint_address = "https://testnet-algorand.api.purestake.io/ps2"
 headers = {"X-API-Key": purestake_key}
 client = algod.AlgodClient(purestake_key, endpoint_address, headers=headers)
