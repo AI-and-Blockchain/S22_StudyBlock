@@ -45,7 +45,7 @@ def show_messages(init_address):
             base64_bytes = note.encode('ascii')
             message_bytes = base64.b64decode(base64_bytes)
             message = message_bytes.decode('ascii')
-            retlist.append(message)
+            retlist.append([message, tx["sender"]])
     return retlist
 
 def runner(init_address):
@@ -80,7 +80,7 @@ def runner(init_address):
             message_bytes = base64.b64decode(base64_bytes)
             message = message_bytes.decode('ascii')
             # do something with tx_id and amount
-            if(len(message) > 4 and message[0:3] == 'DATA'):
+            if(len(message) > 4 and message[0:4] == 'DATA'):
                 # data received 
                 sender = tx['sender']
                 algodclient = algod.AlgodClient("", 'https://testnet-algorand.api.purestake.io/ps2', headers)
@@ -103,7 +103,7 @@ def runner(init_address):
 
                 try:
                     tx_confirm = algodclient.send_transaction(signed_tx)
-                    print('Transaction sent with ID', signed_tx.transaction.get_txid())
+                    # print('Transaction sent with ID', signed_tx.transaction.get_txid())
                     wait_for_confirmation(algodclient, txid=signed_tx.transaction.get_txid())
                 except Exception as e:
                     print(e)
