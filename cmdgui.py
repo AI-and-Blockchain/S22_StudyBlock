@@ -38,7 +38,7 @@ def patientOutput():
     print("Which trial would you like to access? (number)")
     line = int(input())
     print("Accessing", trials[line - 1])
-    print("Would you like to contact the researcher or send data?")
+    print("Would you like to [c]ontact the researcher or [s]end data?")
     line = input()
     if (line == 'c' or line == 'C'):
         # run the oracle to send messages
