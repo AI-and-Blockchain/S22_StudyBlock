@@ -21,9 +21,9 @@ sequenceDiagram;
     Participant C as Patient
     Note over A: Advertises Clinical Trial <br> by selecting "add trial"
     Note over A: Stores trial details <br> in shared database
-    C -> A: Patient reaches out <br> to research owner
-    A -> C: Researcher and patient <br> exchange messages
-    C -> A: Patient can send encrypted <br> data to researcher
+    C ->> A: Patient reaches out <br> to research owner
+    A --> C: Researcher and patient <br> exchange messages
+    C ->> A: Patient can send encrypted <br> data to researcher
 ```
 
 ### StudyBlock Architecture ###
