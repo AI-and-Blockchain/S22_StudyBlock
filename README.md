@@ -32,12 +32,11 @@ sequenceDiagram;
     Participant B as BlockChain layer
     Participant C as User
     Participant A as NLP powered search engine
-    C -> A: Triggers search feature
-    A -> C: Returns list of relevant studies
-    C -> B: User uses block chain <br> to privately message research owner
-    C -> B: Research owner uses block <br> chain to privately messager <br> participant or researcher 
-    C -> B: Patient can send data <br> using Oracle to trigger atomic contract
-    B -> C:  Atomic contract sends <br> tokens back to patient
+    C ->> A: Triggers search feature
+    A ->> C: Returns list of relevant studies
+    C -> B: Users use block chain <br> to privately message between <br> patient and researcher
+    C ->> B: Patient can send data <br> using Oracle to trigger atomic contract
+    B ->> C:  Atomic contract sends <br> tokens back to patient
 ```
 
 # Instructions
