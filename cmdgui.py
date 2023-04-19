@@ -1,6 +1,6 @@
 from models.nlp import Model
 from messaging.ClinicalTrialMessaging import send_message
-from oracle import runner
+from oracle import runner, show_messages
 
 def researchOutput():
     print("Input your identifier: ")
@@ -11,7 +11,7 @@ def researchOutput():
     print("Welcome", line)
     print("Would you like to add, edit or delete a trial?")
     line = input()
-    if line == 's' or line == 'S':
+    if line == 'a' or line == 'A':
         print("Enter the new trial title to add: ")
         title = input()
         print("Enter the trial description: ")
@@ -42,8 +42,6 @@ def patientOutput():
     line = input()
     if (line == 'c' or line == 'C'):
         # run the oracle to send messages
-        print("Enter your address: ")
-        patientAddress = input()
         print("Enter private key: ")
         patientKey = input()
         print("Enter receiver address: ")
@@ -53,8 +51,6 @@ def patientOutput():
         send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
     elif(line == 's' or line == 'S'):
         # execute atomic contract
-        print("Enter your address: ")
-        patientAddress = input()
         print("Enter private key: ")
         patientKey = input()
         print("Enter receiver address: ")
@@ -72,6 +68,18 @@ passwords = ["CMU", "JHU", "RPI"]
 print("Researcher (WIP) [R] or Patient [P]?")
 line = input()
 if line == "r" or line == "R":
+    print("Enter your address: ")
+    researcherAddress = input()
+    lst = show_messages(researcherAddress)
+    print("Here are your messages:")
+    for s in lst:
+        print(s)
     researchOutput()
 elif line == "p" or line == "P":
+    print("Enter your address: ")
+    patientAddress = input()
+    lst = show_messages(patientAddress)
+    print("Here are your messages:")
+    for s in lst:
+        print(s)
     patientOutput()

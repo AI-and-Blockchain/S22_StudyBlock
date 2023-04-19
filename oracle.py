@@ -15,6 +15,39 @@ def wait_for_confirmation(client, txid):
     print('Transaction confirmed in round', txinfo.get('confirmed-round'))
     return txinfo
 
+def show_messages(init_address):
+    retlist = []
+    # set up query parameters
+    address = init_address
+    headers = {
+        "X-API-Key": "1xxSTImRIS7YrSc6GQeTc1XILcoh8faP5F3o1rVA",
+    }
+
+    # construct query URL
+    base_url = "https://algoindexer.testnet.algoexplorerapi.io/v2/accounts/"
+    query_url = f"{base_url}{address}/transactions"
+
+    # submit query and parse JSON response
+    response = requests.get(query_url)
+    response_json = json.loads(response.text)
+
+    # process response data
+    transactions = response_json["transactions"]
+
+    for tx in transactions:
+        if(tx["sender"] == address):
+            continue
+        if(tx["id"] == '7H6KASJRX6KOXWYNLGGPIQOYH3EU7OPCE4WMYE4M3IBU3HAZ3QSA'):
+            continue
+        note = "empty"
+        if("note" in tx):
+            note = tx['note']
+            base64_bytes = note.encode('ascii')
+            message_bytes = base64.b64decode(base64_bytes)
+            message = message_bytes.decode('ascii')
+            retlist.append(message)
+    return retlist
+
 def runner(init_address):
     # set up query parameters
     address = init_address
