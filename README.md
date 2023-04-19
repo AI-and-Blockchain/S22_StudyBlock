@@ -18,14 +18,12 @@ As a researcher, I want to find clinical trial data related to my current study 
 ```mermaid
 sequenceDiagram;
     Participant A as Research Owner
-    Participant B as Researcher
     Participant C as Patient
-    Note over A: Advertises Clinical Trial <br> to BlockChain
-    Note over A: Stores trial description in shared database
-    Note over B, C: Uses NLP Algorithm <br> to search for <br> relevant studies
-    Note over B,C: Researcher/Patient <br> finds a matching study
-    B -> A: Researcher reaches <br> out to research owner, <br> research owner can chose <br> to then share off-chain
+    Note over A: Advertises Clinical Trial <br> by selecting "add trial"
+    Note over A: Stores trial details <br> in shared database
     C -> A: Patient reaches out <br> to research owner
+    A -> C: Researcher and patient <br> exchange messages
+    C -> A: Patient can send encrypted <br> data to researcher
 ```
 
 ### StudyBlock Architecture ###
@@ -36,8 +34,10 @@ sequenceDiagram;
     Participant A as NLP powered search engine
     C -> A: Triggers search feature
     A -> C: Returns list of relevant studies
-    C -> B: User uses atomic contract <br> to privately message research owner
-    C -> B: Research owner uses atomic <br> contract to privately messager <br> participant or researcher 
+    C -> B: User uses block chain <br> to privately message research owner
+    C -> B: Research owner uses block <br> chain to privately messager <br> participant or researcher 
+    C -> B: Patient can send data <br> using Oracle to trigger atomic contract
+    B -> C:  Atomic contract sends <br> tokens back to patient
 ```
 
 # Instructions
