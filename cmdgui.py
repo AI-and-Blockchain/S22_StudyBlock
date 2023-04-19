@@ -1,5 +1,6 @@
 from models.nlp import Model
 from messaging.ClinicalTrialMessaging import send_message
+from oracle import runner
 
 def researchOutput():
     print("Input your identifier: ")
@@ -37,9 +38,9 @@ def patientOutput():
     print("Which trial would you like to access? (number)")
     line = int(input())
     print("Accessing", trials[line - 1])
-    print("Would you like to contact the researcher?")
+    print("Would you like to contact the researcher or send data?")
     line = input()
-    if (line == 'y' or line == 'Y'):
+    if (line == 'c' or line == 'C'):
         # run the oracle to send messages
         print("Enter your address: ")
         patientAddress = input()
@@ -50,6 +51,19 @@ def patientOutput():
         print("Enter message: ")
         message = input()
         send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
+    elif(line == 's' or line == 'S'):
+        # execute atomic contract
+        print("Enter your address: ")
+        patientAddress = input()
+        print("Enter private key: ")
+        patientKey = input()
+        print("Enter receiver address: ")
+        receiverAddress = input()
+        print("Enter data: ")
+        data = input()
+        message = f"DATA:{data}"
+        send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
+        runner(receiverAddress)
 
 my_model = Model()
 # my_model.search('Chemotherapy trials for woman older than 30')
