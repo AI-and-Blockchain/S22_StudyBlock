@@ -36,7 +36,7 @@ sequenceDiagram;
     A ->> C: Returns list of relevant studies
     C ->>+ B: Patient selects study <br> and messages researcher
     C -> B: Users use block chain <br> to privately message between <br> patient and researcher
-    C ->> B: Patient can send data <br> using Oracle to trigger atomic contract
+    C -->>- B: Patient can send data <br> using Oracle to trigger atomic contract
     B ->> C:  Atomic contract sends <br> tokens back to patient
 ```
 
