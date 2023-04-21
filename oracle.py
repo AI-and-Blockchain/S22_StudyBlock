@@ -4,8 +4,6 @@ import base64
 from algosdk.v2client import algod
 from algosdk import transaction
 
-
-
 def wait_for_confirmation(client, txid):
     last_round = client.status().get('last-round')
     txinfo = client.pending_transaction_info(txid)
@@ -36,18 +34,27 @@ def show_messages(init_address):
     # process response data
     transactions = response_json["transactions"]
 
-    for tx in transactions:
-        if(tx["sender"] == address):
-            continue
-        if(tx["id"] == 'T5GCMHM3QIMMVA2CPKIKYS2UGS7ON4FHGQMX4PLBO6W6WCA6MN6A'):
-            continue
-        note = "empty"
-        if("note" in tx):
-            note = tx['note']
-            base64_bytes = note.encode('ascii')
-            message_bytes = base64.b64decode(base64_bytes)
-            message = message_bytes.decode('ascii')
-            retlist.append([message, tx["sender"]])
+    tx = transactions[0]
+    note = "empty"
+    if("note" in tx):
+        note = tx['note']
+        base64_bytes = note.encode('ascii')
+        message_bytes = base64.b64decode(base64_bytes)
+        message = message_bytes.decode('ascii')
+        retlist.append([message, tx["sender"]])
+    # for tx in transactions:
+    #     print( tx['id'])
+    #     if(tx["sender"] == address):
+    #         continue
+    #     if(tx["id"] == 'T5GCMHM3QIMMVA2CPKIKYS2UGS7ON4FHGQMX4PLBO6W6WCA6MN6A' or tx["id"] == 'U6YDTAMEUTEZDJELHEUEUJP3LECWSMHW3JNKINO5U25FDLBT7DMQ'):
+    #         continue
+    #     note = "empty"
+    #     if("note" in tx):
+    #         note = tx['note']
+    #         base64_bytes = note.encode('ascii')
+    #         message_bytes = base64.b64decode(base64_bytes)
+    #         message = message_bytes.decode('ascii')
+    #         retlist.append([message, tx["sender"]])
     return retlist
 
 def runner(init_address):
