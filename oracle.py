@@ -39,7 +39,7 @@ def show_messages(init_address):
     for tx in transactions:
         if(tx["sender"] == address):
             continue
-        if(tx["id"] == '7H6KASJRX6KOXWYNLGGPIQOYH3EU7OPCE4WMYE4M3IBU3HAZ3QSA'):
+        if(tx["id"] == 'T5GCMHM3QIMMVA2CPKIKYS2UGS7ON4FHGQMX4PLBO6W6WCA6MN6A'):
             continue
         note = "empty"
         if("note" in tx):
