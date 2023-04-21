@@ -14,21 +14,23 @@ def addTrial():
     print("Trial stored")
     researchOutput()
 
+def send():
+    print("Enter private key: ")
+    researcherKey = input()
+    print("Enter patient address: ")
+    receiverAddress = input()
+    print("Enter message: ")
+    data = input()
+    send_message(message=data, sender_pub=researcherAddress, sender_priv=researcherKey, receiver=receiverAddress)
+    researchOutput()
+
 def researchOutput():
     print("Would you like to [a]dd a trial, [s]end message, [c]heck your messages, or [e]xit?")
     line = input()
     if line == 'a' or line == 'A':
         addTrial()
     elif line == 's' or line == "S":
-        print("Enter private key: ")
-        researcherKey = input()
-        print("Enter patient address: ")
-        receiverAddress = input()
-        print("Enter message: ")
-        data = input()
-        message = f"DATA:{data}"
-        send_message(message=message, sender_pub=researcherAddress, sender_priv=researcherKey, receiver=receiverAddress)
-        runner(receiverAddress)
+        send()
     elif line == 'c' or line == "C":
         checkMessages(researcherAddress, 'r')
     elif line == 'e' or line == 'E':
@@ -88,21 +90,23 @@ def checkMessages(address, _id):
     else:
         researchOutput()
 
+def reply():
+    print("Enter private key: ")
+    patientKey = input()
+    print("Enter receiver address: ")
+    receiverAddress = input()
+    print("Enter data: ")
+    data = input()
+    send_message(message=data, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
+    patientOutput()
+
 def patientOutput():
     print("Would you like to [s]earch for trials, [r]eply to message, [c]heck you messages, or [e]xit?")
     line = input()
     if(line == 's' or line == 'S'):
         search()
     elif line == 'r' or line == "R":
-        print("Enter private key: ")
-        patientKey = input()
-        print("Enter receiver address: ")
-        receiverAddress = input()
-        print("Enter data: ")
-        data = input()
-        message = f"DATA:{data}"
-        send_message(message=message, sender_pub=patientAddress, sender_priv=patientKey, receiver=receiverAddress)
-        runner(receiverAddress)
+        reply()
     elif(line == 'c' or line =='C'):
         checkMessages(patientAddress, 'p')
     elif (line == 'e' or line == 'E'):
