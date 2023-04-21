@@ -4,6 +4,8 @@ import base64
 from algosdk.v2client import algod
 from algosdk import transaction
 
+
+
 def wait_for_confirmation(client, txid):
     last_round = client.status().get('last-round')
     txinfo = client.pending_transaction_info(txid)
@@ -99,16 +101,16 @@ def runner(init_address):
 
                 # Create and sign transaction
                 tx = transaction.PaymentTxn(existing_account, params, send_to_address, send_amount, note=note)
-                signed_tx = tx.sign('hoiaCAyWuMsTSm84Jl12Rx/M7Lae4yZTqImk3zUPE2MNOobsLkYrYe521eBXQTshilwJh264kLWR6iml2lP/Jg==')
+                signed_tx = tx.sign('sSX9btZ71Wgz9yHXEFzxEhsK0vxBLDW0z3ekzH/00BnrGVHiS34LHhuaUbkeIHIo+MRKFc2xVLd7KgSzXLQgeg==')
 
                 try:
                     tx_confirm = algodclient.send_transaction(signed_tx)
-                    # print('Transaction sent with ID', signed_tx.transaction.get_txid())
+                    #print('Transaction sent with ID', signed_tx.transaction.get_txid())
                     wait_for_confirmation(algodclient, txid=signed_tx.transaction.get_txid())
                 except Exception as e:
                     print(e)
 
-        # print(tx_id, amount, message)
+        print(tx_id, amount, message)
         message = 'empty'
 
 # runner("BU5IN3BOIYVWD3TW2XQFOQJ3EGFFYCMHN24JBNMR5IU2LWST74TPZAQYBI")
